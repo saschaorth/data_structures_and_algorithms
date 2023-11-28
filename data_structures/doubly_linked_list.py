@@ -58,6 +58,41 @@ class DoublyLinkedList:
         leading_node.next = new_node
         self.length += 1
 
+    def is_tail(self, index):
+        return (index+1) >= self.length
+
+    def ensure_index_within_range(self, index):
+        if (index+1) > self.length:
+            index = (self.length-1)
+        return index
+
+    def update_tail(self, node):
+        current_node = node
+        while current_node:
+            self.tail = current_node
+            current_node = current_node.next
+
+    def remove(self, index):
+        if self.length == 1:
+            raise ValueError('You can not remove the only Node')
+        index = self.ensure_index_within_range(index)
+
+        if (index + 1) > (self.length / 2):
+            leading_node = self.get_node(self.length - index, start_from="tail")
+        else:
+            leading_node = self.get_node(index - 1)
+        to_remove_node = leading_node.next
+        following_node = to_remove_node.next
+
+        if index == 0:
+            self.head = following_node
+        else:
+            leading_node.next = following_node
+
+        if self.is_tail(index):
+            self.update_tail(leading_node)
+        self.length -= 1
+
     def __repr__(self):
         linked_list = []
         current_node = self.head
