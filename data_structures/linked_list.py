@@ -87,6 +87,16 @@ class LinkedList():
             self.update_tail(leading_node)
         self.length -= 1
 
+    def reverse(self):
+        current_node = self.head
+        leading_node = None
+        while current_node:
+            following_node = current_node.next
+            current_node.next = leading_node
+            leading_node = current_node
+            current_node = following_node
+        self.head = leading_node
+
     def __repr__(self):
         linked_list = []
         current_node = self.head
