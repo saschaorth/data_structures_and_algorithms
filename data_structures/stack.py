@@ -4,7 +4,7 @@ class Node:
         self.next = None
 
 
-class Stack:
+class LinkedListStack:
     top = None
     bottom = None
     length = 0
@@ -23,8 +23,33 @@ class Stack:
         self.length += 1
 
     def pop(self):
+        if self.length == 1:
+            self.bottom = None
         if not self.bottom:
             return
         new_top = self.top.next
         self.top = new_top
+        self.length -= 1
+
+
+class ListStack:
+    top = None
+    bottom = None
+    length = 0
+
+    def peek(self):
+        return self.top[-1]
+
+    def push(self, value):
+        if self.length == 0:
+            self.top = [value]
+            self.bottom = [value]
+        else:
+            self.top.append(value)
+        self.length += 1
+
+    def pop(self):
+        if self.length == 1:
+            self.bottom = None
+        self.top.pop()
         self.length -= 1
