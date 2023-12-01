@@ -33,23 +33,15 @@ class LinkedListStack:
 
 
 class ListStack:
-    top = None
-    bottom = None
-    length = 0
+    lst = []
 
     def peek(self):
-        return self.top[-1]
+        return self.lst[-1]
 
     def push(self, value):
-        if self.length == 0:
-            self.top = [value]
-            self.bottom = [value]
-        else:
-            self.top.append(value)
-        self.length += 1
+        self.lst.append(value)
 
     def pop(self):
-        if self.length == 1:
-            self.bottom = None
-        self.top.pop()
-        self.length -= 1
+        if not self.lst:
+            return
+        self.lst.pop()
