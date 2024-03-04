@@ -82,3 +82,15 @@ class BinarySearchTree:
                 parent_node = current_node
                 current_node = current_node.left
         return
+
+
+# visualize tree with
+def traverse(node):
+    if node is None:
+        return None
+
+    tree = dict(value=node.value)
+    tree["left"] = traverse(node.left)
+    tree["right"] = traverse(node.right)
+
+    return tree
